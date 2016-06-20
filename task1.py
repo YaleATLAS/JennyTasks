@@ -1,4 +1,5 @@
 import numpy as np
+# -*- coding: utf-8 -*-
 from root_numpy import root2array, root2rec
 import pandas as pd
 import matplotlib
@@ -25,9 +26,8 @@ df_flat = pd.DataFrame({k: flatten(c) for k, c in jet_df.iteritems()})
 print ("{:.2f}".format(float(len(df_flat))/len(jet_df)))
 
 #print the number of events that do not pass the muon trigger (triggerIsoMu24 branch = False)
-muont_df = df[[key for key in df.keys() if key.startswith('trigger')]]
 count = 0
-for bool in muont_df.values:
+for bool in df['triggerIsoMu24']:
 	if bool==False:
 		count+=1
 print count
@@ -42,3 +42,7 @@ for jt in df['Jet_4V']:
 		Jet_Eta = np.append(Jet_Eta, jt[n].eta())
 
 
+#create an array called ‘jet_weights’ by extending the EventWeight branch to have as many identical entries as number of jets in each event
+jet_weights = []
+#for ew in df['EventWeight']:
+		
