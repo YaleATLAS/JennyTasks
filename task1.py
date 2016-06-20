@@ -49,8 +49,7 @@ fig = plt.figure(figsize=(11.69, 8.27), dpi=100)
 
 bins = np.linspace(min(Jet_Eta), max(Jet_Eta), 30)
 
-_ = plt.hist(Jet_Eta, histtype='stepfilled', normed=False, bins=bins, weights=jet_weights, label=r'$t\overline{t}$', facecolor='g')
-fig.set_alpha(0.5)
+_ = plt.hist(Jet_Eta, histtype='stepfilled', alpha=0.5, normed=False, bins=bins, weights=jet_weights, label=r'$t\overline{t}$', facecolor='g')
 plt.xlabel(r'$\eta$')
 plt.ylabel('Number of Jets')
 plt.legend()
