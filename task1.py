@@ -36,14 +36,23 @@ print count
 df['Jet_4V'] = [map(lambda args: LorentzVector(*args), zip(px, py, pz, e)) for (_, (px, py, pz, e)) in df[['Jet_Px', 'Jet_Py', 'Jet_Pz', 'Jet_E']].iterrows()]
 
 #use the four-vectors to get the jet etas
-Jet_Eta = np.array(float)
-for jt in df['Jet_4V']:
-	for n in range (0,len(jt)-1):
-		Jet_Eta = np.append(Jet_Eta, jt[n].eta())
-
+Jet_Eta = [jt[n].eta() for jt in df['Jet_4V'] for n in range(len(jt))]
 
 #create an array called ‘jet_weights’ by extending the EventWeight branch to have as many identical entries as number of jets in each event
 jet_weights = [[w]*(df['NJet'][i]) for i, w in enumerate(df['EventWeight'])]
 
-#plot jet eta
+#plot jet etas
+jet_weights = flatten(jet_weights)
 
+matplotlib.rcParams.update({'font.size': 16})
+fig = plt.figure(figsize=(11.69, 8.27), dpi=100)
+
+bins = np.linspace(min(Jet_Eta), max(Jet_Eta), 10)
+
+_ = plt.hist(Jet_Eta, histtype='step', normed=False, bins=bins, weights=jet_weights, label=r'$t\overline{t}$', linewidth=2)
+
+plt.xlabel(r'$\eta$')
+plt.ylabel('Number of Jets')
+plt.legend()
+plt.plot()
+plt.show()
