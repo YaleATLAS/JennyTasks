@@ -43,6 +43,7 @@ for jt in df['Jet_4V']:
 
 
 #create an array called ‘jet_weights’ by extending the EventWeight branch to have as many identical entries as number of jets in each event
-jet_weights = []
-#for ew in df['EventWeight']:
-		
+jet_weights = [[w]*(df['NJet'][i]) for i, w in enumerate(df['EventWeight'])]
+
+#plot jet eta
+
