@@ -2,13 +2,13 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from root_numpy import root2array
-import pandas as pd
+#import pandas as pd
 
 ttbar = root2array('ttbar.root')
 qcd = root2array('qcd.root')
 
-tdf = pd.DataFrame(ttbar)
-qdf = pd.DataFrame(qcd)
+#tdf = pd.DataFrame(ttbar)
+#qdf = pd.DataFrame(qcd)
 
 matplotlib.rcParams.update({'font.size': 16})
 fig = plt.figure(figsize=(11.69, 8.27), dpi=100)
