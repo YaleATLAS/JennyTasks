@@ -26,11 +26,7 @@ df_flat = pd.DataFrame({k: flatten(c) for k, c in jet_df.iteritems()})
 print ("{:.2f}".format(float(len(df_flat))/len(jet_df)))
 
 #print the number of events that do not pass the muon trigger (triggerIsoMu24 branch = False)
-count = 0
-for bool in df['triggerIsoMu24']:
-	if bool==False:
-		count+=1
-print count
+print sum(-df['triggerIsoMu24'])
 
 #construct the four-vector of all jets
 df['Jet_4V'] = [map(lambda args: LorentzVector(*args), zip(px, py, pz, e)) for (_, (px, py, pz, e)) in df[['Jet_Px', 'Jet_Py', 'Jet_Pz', 'Jet_E']].iterrows()]
